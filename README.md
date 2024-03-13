@@ -15,6 +15,7 @@ git branch -a
 ### Making changes in your branch:
 git commit -am "Your commit message"  
 or  
+for new files  
 git add .  
 git commit -m "message"  
 
