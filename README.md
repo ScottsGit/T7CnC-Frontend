@@ -22,7 +22,7 @@ git commit -m "message"
 Method 1:  
 git checkout staging  
 git pull  
-git merge main  
+git merge staging  
 git commit -m "Merge main into your-local-branch"  
 
 Method 2:  
