@@ -7,6 +7,9 @@ import { styled } from '@mui/material/styles';
 import DefaultImg from '../../assets/images/section2-default.png';
 import { Section2GridLeft } from '../../components/Section2GridLeft';
 import { Section2GridRight } from '../../components/Section2GridRight';
+import Box from '@mui/material/Box';
+import { TestimCard } from '../../components/TestimCard';
+import RatesImage from '../../assets/images/rates.svg'
 
 
 
@@ -16,9 +19,10 @@ const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-  }));
+}));
 
 export const Section2 = () => {
+
     return (
         <Container sx={{ mt: { xs: 5, md: 10, lg: 15 }, color: "#32004C" }}>
             <Container maxWidth="md" sx={{ mb: 10, }}>
@@ -64,19 +68,32 @@ export const Section2 = () => {
                 sx={{ mb: 10, }} />
 
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={6}>
-                    <Item>1</Item>
-                </Grid>
-                <Grid item xs={6}>
-                    <Item>2</Item>
-                </Grid>
-                <Grid item xs={6}>
-                    <Item>3</Item>
-                </Grid>
-                <Grid item xs={6}>
-                    <Item>4</Item>
-                </Grid>
+
+                <TestimCard
+                    name="Natalie"
+                    content="At Money Magnet, we use AI to strategically plan and personailze the financial needs for both individuals and families with no charge."
+                />
+                <TestimCard
+                    name="Ivan"
+                    content="I am a visual learner so having diagrams on my dashboard helped me understand where I need to budget."
+                />
+                <TestimCard
+                    name="Devon"
+                    content="The design is intuitive and simple. I love that I can personalize my transactions into categories that fit my needs."
+                />
+                <TestimCard
+                    name="Sandy"
+                    content="Different than any budgeting app I've used before. Syncing to all of my accounts is super painless & straightforward."
+                />
+
             </Grid>
+
+            <Box sx={{m: 2, mt: 10}}>
+                <img
+                    src={RatesImage}
+                    style={{ width: "100%", objectFit: "contain" }}
+                />
+            </Box>
 
         </Container>
     )
