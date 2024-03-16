@@ -14,9 +14,11 @@ import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 
 
+import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { Landing } from "./pages/landingPage";
+
 
 const theme = createTheme({
   palette: {
@@ -57,6 +59,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
+        <CssBaseline/>
         {/* <NavBar />
         <ul>
           {userData.map((user) => (
