@@ -26,7 +26,12 @@ const theme = createTheme({
     secondary: {
       main: '#C0FFD0', // Change secondary color
     },
-    // Add more custom colors if needed
+    text: {
+      secondary: '#32004C'
+    }
+  },
+  typography: {
+    fontFamily: 'Staatliches, sans-serif',
   },
 });
 
