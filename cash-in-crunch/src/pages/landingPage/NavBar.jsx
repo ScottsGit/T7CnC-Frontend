@@ -69,13 +69,13 @@ function DrawerAppBar(props) {
             component="div"
             align='left'
             sx={{
-                mr: 10,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 700,
-                letterSpacing: '.2rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
+              mr: 10,
+              display: { xs: 'none', md: 'flex' },
+              fontWeight: 700,
+              letterSpacing: '.2rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
           >
             <img src={CompanyIcon} alt="Company Logo" sx={{ display: { xs: 'none', md: 'flex' } }} />
           </Typography>
@@ -91,19 +91,29 @@ function DrawerAppBar(props) {
             ))}
           </Box>
           <Box sx={{ align: "right", display: { xs: 'none', sm: 'block' }, mr: 5 }}>
-            <Button variant="contained" 
-                    sx={{ borderRadius: '999px', 
-                    color: '#32004C', 
-                    bgcolor: '#ffffff', // Change background color here
-                    '&:focus': {
-                      bgcolor: '#ffffff', // Change focused background color here
-                    },
-                    mr: 2  }} 
-                    disableElevation>
-                  Sign In
+            <Button variant="contained"
+              sx={{
+                borderRadius: '999px',
+                color: '#32004C',
+                bgcolor: '#ffffff', // Change background color here
+                '&:focus': {
+                  bgcolor: '#ffffff', // Change focused background color here
+                },
+                mr: 2
+              }}
+              disableElevation>
+              Sign In
             </Button>
-            <Button variant="contained" color="secondary" sx={{ borderRadius: '999px', color: '#32004C' }} >
-                  Sign Up
+            <Button variant="contained"
+              sx={{
+                borderRadius: '999px',
+                color: '#32004C',
+                bgcolor: '#C0FFD0', // Change background color here
+                '&:focus': {
+                  bgcolor: '#C0FFD0', // Change focused background color here
+                },
+              }} >
+              Sign Up
             </Button>
           </Box>
         </Toolbar>

@@ -88,7 +88,7 @@ export const Section2 = () => {
 
             </Grid>
 
-            <Box sx={{m: 2, mt: 10}}>
+            <Box sx={{m: 2, mt: 10, mb: 10}}>
                 <img
                     src={RatesImage}
                     style={{ width: "100%", objectFit: "contain" }}
