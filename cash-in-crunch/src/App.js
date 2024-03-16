@@ -26,7 +26,7 @@ const theme = createTheme({
       main: '#32004C', // Change primary color
     },
     secondary: {
-      main: '#C0FFD0', // Change secondary color
+      main: '#E4D5EC', // Change secondary color
     },
     text: {
       secondary: '#32004C'
