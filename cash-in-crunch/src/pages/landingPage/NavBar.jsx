@@ -20,6 +20,7 @@ import CompanyIcon from '../../assets/images/company-icon.svg';
 
 const drawerWidth = 240;
 const navItems = ['Feature', 'Learn', 'Download'];
+const authItems = ['Sign In', 'Sign Up'];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -35,7 +36,7 @@ function DrawerAppBar(props) {
       </Typography>
       {/* <Divider /> */}
       <List>
-        {navItems.map((item) => (
+        {[...navItems, ...authItems].map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
@@ -78,7 +79,7 @@ function DrawerAppBar(props) {
           >
             <img src={CompanyIcon} alt="Company Logo" sx={{ display: { xs: 'none', md: 'flex' } }} />
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box align="left" sx={{ display: { xs: 'none', sm: 'block', flexGrow: 1 } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{
                 borderRadius: '999px',
@@ -88,6 +89,22 @@ function DrawerAppBar(props) {
                 {item}
               </Button>
             ))}
+          </Box>
+          <Box sx={{ align: "right", display: { xs: 'none', sm: 'block' }, mr: 5 }}>
+            <Button variant="contained" 
+                    sx={{ borderRadius: '999px', 
+                    color: '#32004C', 
+                    bgcolor: '#ffffff', // Change background color here
+                    '&:focus': {
+                      bgcolor: '#ffffff', // Change focused background color here
+                    },
+                    mr: 2  }} 
+                    disableElevation>
+                  Sign In
+            </Button>
+            <Button variant="contained" color="secondary" sx={{ borderRadius: '999px', color: '#32004C' }} >
+                  Sign Up
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -108,9 +125,7 @@ function DrawerAppBar(props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-      </Box>
+
     </Box>
   );
 }
