@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { Box, Grid, Typography, Container, Card, CardActionArea, CardContent, Stack } from "@mui/material";
-import {
-    renderInputField,
-    renderButton
-} from "../../utils/DisplayComponent";
+import {renderButton} from "../../utils/DisplayComponent";
+import { MultiFormContext } from ".";
 
 import add from '../../assets/images/add.png';
 import assign from '../../assets/images/assign.png';
@@ -23,8 +21,17 @@ const Step3Form = ({
     handleChange,
     handlePrev,
     handleSubmit,
+    handleGoalChange,
 }) => {
+
     const [selectedCards, setSelectedCards] = useState([]);
+
+
+    useEffect(() => {
+        // Update child state if parent state changes
+        setSelectedCards(inputsObj.data.goals);
+      }, [inputsObj.data]);
+
     const cards = [
         {
             id: 1,
@@ -66,13 +73,15 @@ const Step3Form = ({
 
     const toggleSelect = (card) => {
         setSelectedCards((prevSelected) => {
+            let updatedGoals = [];
             if (prevSelected.find(item => item.id === card.id)) {
-                console.log(selectedCards)
-                return prevSelected.filter((item) => item.id !== card.id);
+                updatedGoals = prevSelected.filter((item) => item.id !== card.id);
             } else {
-                console.log(selectedCards)
-                return [...prevSelected, card];
+                updatedGoals = [...prevSelected, card];
             }
+            console.log("Updated goals:", updatedGoals);
+            handleGoalChange({ goals: updatedGoals });
+            return updatedGoals;
         });
     };
 
@@ -110,7 +119,7 @@ const Step3Form = ({
                                         <Typography variant='caption' align="center">
                                             <img src={card.img} alt={card.tittle} style={{ height:'30%' }}/>
                                         </Typography>
-                                        <Typography variant='h6' align="center" color="primary" sx={{ height: '40%', fontWeight: "bold", fontSize: "18px" }}>
+                                        <Typography variant='h6' align="center" color="primary" sx={{ height: '30%', fontWeight: "bold", fontSize: "18px" }}>
                                             {card.tittle}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
