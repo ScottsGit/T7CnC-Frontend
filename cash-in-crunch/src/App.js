@@ -18,7 +18,7 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { Landing } from "./pages/landingPage";
-import { MultiForm } from "./pages/signup";
+import MultiForm from "./pages/signup";
 
 
 const theme = createTheme({

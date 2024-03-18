@@ -97,7 +97,7 @@ function DrawerAppBar(props) {
                 color: '#32004C',
                 bgcolor: '#ffffff',
                 '&:focus': {
-                  bgcolor: '#ffffff', 
+                  bgcolor: '#ffffff',
                 },
                 mr: 2
               }}
@@ -105,12 +105,13 @@ function DrawerAppBar(props) {
               Sign In
             </Button>
             <Button variant="contained"
+              href="/signup"
               sx={{
                 borderRadius: '999px',
                 color: '#32004C',
                 bgcolor: '#C0FFD0',
                 '&:focus': {
-                  bgcolor: '#C0FFD0', 
+                  bgcolor: '#C0FFD0',
                 },
               }} >
               Sign Up
