@@ -19,7 +19,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import Landing from "./pages/landingPage";
 import MultiForm from "./pages/signup";
-import Dashboard from "./pages/dashboards";
+import Dashboard from "./pages/dashboards/MainDashboard";
+
+import Routers from "./routes/index";
 
 
 const theme = createTheme({
@@ -61,7 +63,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <CssBaseline/>
+        <CssBaseline />
         {/* <NavBar />
         <ul>
           {userData.map((user) => (
@@ -69,11 +71,16 @@ function App() {
           ))}
         </ul> */}
         <UserProvider>
+          <Routers />
+
           <Routes>
-            <Route exact path="/" element={<Landing />} />
+            {/* <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<MultiForm />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} /> */}
+
+
+
             {/* <Route exact path="/dashboard" element={<Dashboard />}> 
               <Route
                 path="/profile"
@@ -93,6 +100,8 @@ function App() {
               />
             </Route> */}
           </Routes>
+
+
           {/* <Footer /> */}
         </UserProvider>
       </div>
