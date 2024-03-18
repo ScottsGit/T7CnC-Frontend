@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { Box, Grid, Typography, Container, Card, CardActionArea, CardContent, Stack } from "@mui/material";
-import {renderButton} from "../../utils/DisplayComponent";
+import { renderButton } from "../../utils/DisplayComponent";
 import { MultiFormContext } from ".";
 
 import add from '../../assets/images/add.png';
@@ -30,7 +30,7 @@ const Step3Form = ({
     useEffect(() => {
         // Update child state if parent state changes
         setSelectedCards(inputsObj.data.goals);
-      }, [inputsObj.data]);
+    }, [inputsObj.data]);
 
     const cards = [
         {
@@ -86,7 +86,7 @@ const Step3Form = ({
     };
 
     return (
-        <Box>
+        <React.Fragment>
 
             <Box sx={{}}>
                 <Typography variant="h5" align="center" color="primary" sx={{ paddingY: '20px', fontWeight: "bold", fontSize: "30px" }}>
@@ -117,7 +117,7 @@ const Step3Form = ({
 
                                     <CardContent sx={{ height: '100%' }}>
                                         <Typography variant='caption' align="center">
-                                            <img src={card.img} alt={card.tittle} style={{ height:'30%' }}/>
+                                            <img src={card.img} alt={card.tittle} style={{ height: '30%' }} />
                                         </Typography>
                                         <Typography variant='h6' align="center" color="primary" sx={{ height: '30%', fontWeight: "bold", fontSize: "18px" }}>
                                             {card.tittle}
@@ -131,11 +131,11 @@ const Step3Form = ({
                             </CardActionArea>
                         </Grid>
                     ))}
-                    
-                        <Typography align='left' sx={{ mt: 2, ml: 3, flexGrow:1 }}>
-                            *Your goals will be added to your profile. You can make changes when you enter your account.
-                        </Typography>
-                    
+
+                    <Typography align='left' sx={{ mt: 2, ml: 3, flexGrow: 1 }}>
+                        *Your goals will be added to your profile. You can make changes when you enter your account.
+                    </Typography>
+
                     <Stack direction="row" spacing={2} width="100%" sx={{ position: 'relative', mt: 2, pl: 3 }}>
                         {renderButton({ label: "Complete", onClick: handleSubmit, sx: { borderRadius: '999px', display: 'flex' } })}
                         {renderButton({
@@ -155,7 +155,7 @@ const Step3Form = ({
                     </Stack>
                 </Grid>
             </Stack>
-        </Box>
+        </React.Fragment>
     );
 };
 

@@ -8,12 +8,8 @@ import DashboardImg from '../../assets/images/dashboard.png';
 
 export const Section1 = () => {
   return (
-    <Box component="main" 
+    <Box 
         sx={{
-            zIndex: -10,
-            top: 0,
-            left: 0,
-            right: 0,
             p: 10,
             height: { sm: '120vh', md: '140vh', lg: '140vh', xl: '140vh' },
             backgroundImage: `url(${Section1BG})`, // Set the background image

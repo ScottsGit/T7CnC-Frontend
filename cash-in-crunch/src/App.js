@@ -10,15 +10,16 @@ import Goals from "./components/Goals";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import { UserProvider, UserContext } from "./context/UserContext";
-import Dashboard from "./components/Dashboard";
+// import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 
 
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
-import { Landing } from "./pages/landingPage";
+import Landing from "./pages/landingPage";
 import MultiForm from "./pages/signup";
+import Dashboard from "./pages/dashboards";
 
 
 const theme = createTheme({
@@ -72,6 +73,7 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<MultiForm />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route exact path="/dashboard" element={<Dashboard />}> 
               <Route
                 path="/profile"
