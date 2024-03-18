@@ -95,9 +95,9 @@ function DrawerAppBar(props) {
               sx={{
                 borderRadius: '999px',
                 color: '#32004C',
-                bgcolor: '#ffffff', // Change background color here
+                bgcolor: '#ffffff',
                 '&:focus': {
-                  bgcolor: '#ffffff', // Change focused background color here
+                  bgcolor: '#ffffff', 
                 },
                 mr: 2
               }}
@@ -108,9 +108,9 @@ function DrawerAppBar(props) {
               sx={{
                 borderRadius: '999px',
                 color: '#32004C',
-                bgcolor: '#C0FFD0', // Change background color here
+                bgcolor: '#C0FFD0',
                 '&:focus': {
-                  bgcolor: '#C0FFD0', // Change focused background color here
+                  bgcolor: '#C0FFD0', 
                 },
               }} >
               Sign Up
