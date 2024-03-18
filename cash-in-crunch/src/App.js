@@ -18,6 +18,7 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { Landing } from "./pages/landingPage";
+import { MultiForm } from "./pages/signup";
 
 
 const theme = createTheme({
@@ -70,7 +71,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup" element={<MultiForm />} />
             {/* <Route exact path="/dashboard" element={<Dashboard />}> 
               <Route
                 path="/profile"
