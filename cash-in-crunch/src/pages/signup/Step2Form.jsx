@@ -10,7 +10,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
     const { data, errors } = inputsObj;
 
     return (
-        <Box>
+        <React.Fragment>
             <Container>
                 <Box>
                     <Typography variant="h5" align="center" color="primary" sx={{
@@ -22,7 +22,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                         Let's confirm your information
                     </Typography>
                     <Typography sx={{
-                        pb: '20px', 
+                        pb: '20px',
                         fontSize: "16px",
                     }} paragraph>
                         This way, we can provide a secure login & confirm your identity or contact you about your account.
@@ -79,7 +79,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                         </Grid>
                     </Grid>
 
-                    <Stack direction="row" spacing={2} width="100%" sx={{mt:2}}>
+                    <Stack direction="row" spacing={2} width="100%" sx={{ mt: 2 }}>
                         {renderButton({ label: "Next", onClick: handleNext, sx: { borderRadius: '999px', display: 'flex' } })}
                         {renderButton({
                             variant: "outlined",
@@ -106,7 +106,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                     </Typography>
                 </Box>
             </Container>
-        </Box>
+        </React.Fragment>
     );
 };
 

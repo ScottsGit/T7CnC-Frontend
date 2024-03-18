@@ -47,7 +47,7 @@ const MultiForm = ({ classes }) => {
   const handleNextStep = () => setStepCount((prevStep) => prevStep + 1);
   const handleBackStep = () => setStepCount((prevStep) => prevStep - 1);
 
-  const handleGoalChange = ({goals}) => {
+  const handleGoalChange = ({ goals }) => {
     console.log(goals)
     setData((prevData) => ({ ...prevData, goals: goals }));
   }
@@ -93,7 +93,7 @@ const MultiForm = ({ classes }) => {
   };
 
   return (
-    <Box>
+    <React.Fragment>
       <AppBar component="nav">
         <Toolbar>
           <Typography
@@ -131,14 +131,14 @@ const MultiForm = ({ classes }) => {
             <Grid item xs={12} sm={7}>
               <Box component="form" onSubmit={handleSubmit}>
 
-                  {getStepContent(stepCount)}
+                {getStepContent(stepCount)}
 
               </Box>
             </Grid>
           </Grid>
         </Stack>
       </Box>
-    </Box>
+    </React.Fragment>
   );
 };
 export default MultiForm;
