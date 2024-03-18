@@ -22,7 +22,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                         Let's confirm your information
                     </Typography>
                     <Typography sx={{
-                        padding: '20px', // Add some padding
+                        pb: '20px', 
                         fontSize: "16px",
                     }} paragraph>
                         This way, we can provide a secure login & confirm your identity or contact you about your account.
@@ -36,7 +36,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}>
-                    <Grid container spacing={1}>
+                    <Grid container columnSpacing={2}>
                         <Grid item xs={12} sm={6}>
                             {renderInputField({
                                 inputsObj,
@@ -79,7 +79,7 @@ const Step2Form = ({ inputsObj, handleChange, handleNext, handlePrev }) => {
                         </Grid>
                     </Grid>
 
-                    <Stack direction="row" spacing={2} width="100%">
+                    <Stack direction="row" spacing={2} width="100%" sx={{mt:2}}>
                         {renderButton({ label: "Next", onClick: handleNext, sx: { borderRadius: '999px', display: 'flex' } })}
                         {renderButton({
                             variant: "outlined",

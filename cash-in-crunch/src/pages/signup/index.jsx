@@ -72,7 +72,6 @@ export const MultiForm = ({ classes }) => {
           <Step3Form
             inputsObj={{ data, errors }}
             handleChange={handleOnChange}
-            handleNext={handleNextStep}
             handlePrev={handleBackStep}
             handleSubmit={handleSubmit}
           />
@@ -107,9 +106,9 @@ export const MultiForm = ({ classes }) => {
       </AppBar>
 
 
-      <Box component="main" sx={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-        <Stack width="80vh">
-          <Stepper activeStep={stepCount} sx={{ mb:3 }} alternativeLabel>
+      <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <Stack  sx={{width:"80vh", pt:'12vh'}}>
+          <Stepper activeStep={stepCount} sx={{ mb:2 }} alternativeLabel>
             {["Sign Up", "Verify", "Personalize"].map((label) => (
               <Step key={label}>
                 <StepLabel sx={{ fontWeight: "bold" }}>{label}</StepLabel>
@@ -121,7 +120,7 @@ export const MultiForm = ({ classes }) => {
           <Grid container maxWidth="md" sx={{
             justifyContent: "center",
             alignItems: "center",
-            height: "60vh",
+
           }}>
 
             <Grid item xs={12} sm={7}>

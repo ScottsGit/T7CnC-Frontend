@@ -21,7 +21,7 @@ const Step1Form = ({ inputsObj, handleChange, handleNext }) => {
                         Sign up for free!
                     </Typography>
                     <Typography sx={{
-                        padding: '20px', // Add some padding
+                        pb: '20px', // Add some padding
                         fontSize: "16px",
                     }} paragraph>
                         Create an account in order to gain access to all of Money Magnet's unique features. This is required!

@@ -51,7 +51,7 @@ export const renderButton = ({ label, variant, color, fullWidth, onClick, sx={} 
       color={color ? color : "primary"}
       fullWidth={fullWidth ? fullWidth : false}
       onClick={onClick}
-      sx={{...sx}}>
+      sx={{...sx, mt:2}}>
       {label}
     </Button>
   );
