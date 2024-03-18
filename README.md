@@ -1,6 +1,6 @@
 
-![landing page](https://github.com/ScottsGit/T7CnC-Frontend/assets/17536863/74eab397-9b7f-4a9f-ae24-40e289df8270){padding-right:20px" }
-
+![landing page](https://github.com/ScottsGit/T7CnC-Frontend/assets/17536863/74eab397-9b7f-4a9f-ae24-40e289df8270)
+&nbsp;&nbsp;
 
 ![signup page](https://github.com/ScottsGit/T7CnC-Frontend/assets/17536863/0cd404f6-3487-443c-beee-49dd98660148)
 
