@@ -9,6 +9,7 @@ import { dashboardRoutes } from "./routes";
 
 import Landing from "../pages/landingPage";
 import MultiForm from "../pages/signup";
+import Login from "../components/Login";
 
 const Index = () => {
 
@@ -16,6 +17,7 @@ const Index = () => {
         <Routes>
             <Route exact path="/" element={<Landing />} />
             <Route path="/signup" element={<MultiForm />} />
+            <Route path="/login" element={<Login />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
 
             <Route>
