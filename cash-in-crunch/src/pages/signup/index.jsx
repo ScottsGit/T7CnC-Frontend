@@ -138,7 +138,7 @@ const MultiForm = ({ classes }) => {
 
 
       <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Stack sx={{ width: "60%", pt: '12vh' }}>
+        <Stack sx={{ width: "80vh", pt: '12vh' }}>
           <Stepper activeStep={stepCount} sx={{ mb: 2 }} alternativeLabel>
             {["Sign Up", "Verify", "Personalize"].map((label) => (
               <Step key={label}>
@@ -151,7 +151,7 @@ const MultiForm = ({ classes }) => {
           <Grid container maxWidth="md" sx={{
             justifyContent: "center",
             alignItems: "center",
-
+            maxWidth:'100%'
           }}>
 
             <Grid item xs={12} sm={7}>
