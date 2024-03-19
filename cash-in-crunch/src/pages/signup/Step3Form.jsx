@@ -88,7 +88,7 @@ const Step3Form = ({
     return (
         <React.Fragment>
 
-            <Box align="center" sx={{ display:'flex', flexFlow:'column', maxWidth:'100%'}}>
+            <Box align="center" sx={{ display:'flex', flexFlow:'column',  }}>
                 <Typography variant="h5"  color="primary" sx={{ paddingY: '20px', fontWeight: "bold", fontSize: "30px" }}>
                     What are your financial goals?
                 </Typography>
@@ -105,7 +105,7 @@ const Step3Form = ({
 
                 <Grid container spacing={3} sx={{ position: 'absolute', left: '-50%', transform: 'translateX(50%)', zIndex: 0, justifyContent: 'center', paddingX: '20%' }}>
                     {cards.map((card) => (
-                        <Grid item xs={12} sm={6} md={4} key={card.id} sx={{ height: '180px', width: '100%' }}>
+                        <Grid item xs={12} sm={6} md={4} key={card.id} sx={{ height: '180px', width:'200px' }}>
                             <CardActionArea sx={{ height: '100%' }}>
                                 <Card
                                     onClick={() => toggleSelect(card)}
