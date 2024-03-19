@@ -20,7 +20,6 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Logo from '../assets/images/logo.svg';
-
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
@@ -102,6 +101,8 @@ export default function Dashboard({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const selectedIndexRef = useRef(0);
+
   const list1 = [{ id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon/> },
   { id: 1, name: 'Accounts', icon: <ViewComfyOutlinedIcon/> },
   { id: 2, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon/> },
@@ -118,6 +119,15 @@ export default function Dashboard({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const buttonProps = (index) => ({
+    selected: selectedIndex === index,
+    onClick: () => setSelectedIndex(index),
+  });
+  const handleListItemClick = (index) => {
+    setSelectedIndex(index);
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -163,14 +173,16 @@ export default function Dashboard({ children }) {
         <Divider sx={{ backgroundColor: '#4E0673' }} />
         <List>
           {list1.map((item, index) => (
-            <ListItem key={item.id} disablePadding sx={{ display: 'block' }} >
+            <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                   '&:focus': { backgroundColor: '#7827A3' },
+                  backgroundColor: selectedIndex === index ? '#7827A3' : 'transparent'
                 }}
+                onClick={() => handleListItemClick(index)}
               >
                 <ListItemIcon
                   sx={{
@@ -200,6 +212,7 @@ export default function Dashboard({ children }) {
                   px: 2.5,
                   '&:focus': { backgroundColor: '#7827A3' },
                 }}
+               
               >
                 <ListItemIcon
                   sx={{
