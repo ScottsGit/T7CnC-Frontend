@@ -88,8 +88,8 @@ const Step3Form = ({
     return (
         <React.Fragment>
 
-            <Box sx={{}}>
-                <Typography variant="h5" align="center" color="primary" sx={{ paddingY: '20px', fontWeight: "bold", fontSize: "30px" }}>
+            <Box align="center" sx={{ display:'flex', flexFlow:'column', maxWidth:'100%'}}>
+                <Typography variant="h5"  color="primary" sx={{ paddingY: '20px', fontWeight: "bold", fontSize: "30px" }}>
                     What are your financial goals?
                 </Typography>
                 <Typography sx={{
@@ -105,7 +105,7 @@ const Step3Form = ({
 
                 <Grid container spacing={3} sx={{ position: 'absolute', left: '-50%', transform: 'translateX(50%)', zIndex: 0, justifyContent: 'center', paddingX: '20%' }}>
                     {cards.map((card) => (
-                        <Grid item xs={12} sm={6} md={4} key={card.id} sx={{ height: '200px', width: '100%' }}>
+                        <Grid item xs={12} sm={6} md={4} key={card.id} sx={{ height: '180px', width: '100%' }}>
                             <CardActionArea sx={{ height: '100%' }}>
                                 <Card
                                     onClick={() => toggleSelect(card)}
@@ -117,12 +117,12 @@ const Step3Form = ({
 
                                     <CardContent sx={{ height: '100%' }}>
                                         <Typography variant='caption' align="center">
-                                            <img src={card.img} alt={card.tittle} style={{ height: '30%' }} />
+                                            <img src={card.img} alt={card.tittle} style={{ height: '25%' }} />
                                         </Typography>
-                                        <Typography variant='h6' align="center" color="primary" sx={{ height: '30%', fontWeight: "bold", fontSize: "18px" }}>
+                                        <Typography variant='h6' align="center" color="primary" sx={{ height: '40%', fontWeight: "bold", fontSize: "16px", mb:0.5 }}>
                                             {card.tittle}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
+                                        <Typography variant="body2" color="text.secondary" sx={{ fontSize: "12px" }}>
                                             {card.paragraph}
                                         </Typography>
                                     </CardContent>

@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   Box,
@@ -16,7 +17,8 @@ import Step1Form from "./Step1Form";
 import Step2Form from "./Step2Form";
 import Step3Form from "./Step3Form";
 import CompanyIcon from '../../assets/images/company-icon.svg';
-
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const MultiForm = ({ classes }) => {
   const [data, setData] = useState({
@@ -29,10 +31,34 @@ const MultiForm = ({ classes }) => {
   });
   const [errors, setErrors] = useState({});
   const [stepCount, setStepCount] = useState(0);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form submitted", data);
+    const formData = {...data};
+    await axios
+      .post(`http://localhost:8888/register`, formData)
+      .then((response) => {
+        // move to sign in page
+        navigate("/login");
+
+        console.log("successful registered")
+
+        // add successfully notif
+        toast.success(response?.data?.detail);
+        // reload page
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        // add error notif
+        toast.error(error.response?.data?.detail);
+      });
   };
 
   const handleOnChange = ({ target }) => {
@@ -112,7 +138,7 @@ const MultiForm = ({ classes }) => {
 
 
       <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Stack sx={{ width: "80vh", pt: '12vh' }}>
+        <Stack sx={{ width: "60%", pt: '12vh' }}>
           <Stepper activeStep={stepCount} sx={{ mb: 2 }} alternativeLabel>
             {["Sign Up", "Verify", "Personalize"].map((label) => (
               <Step key={label}>
