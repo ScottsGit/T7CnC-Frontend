@@ -20,6 +20,7 @@ import CompanyIcon from '../../assets/images/company-icon.svg';
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthLayout } from "../../layouts/AuthLayout";
 
 const MultiForm = ({ classes }) => {
   const [data, setData] = useState({
@@ -43,7 +44,7 @@ const MultiForm = ({ classes }) => {
       .post(`${process.env.REACT_APP_API_HOST}/auth/register`, formData)
       .then((response) => {
         // move to sign in page
-        // navigate("/login");
+        navigate("/login");
 
         console.log("successful registered")
 
@@ -122,52 +123,41 @@ const MultiForm = ({ classes }) => {
 
   return (
     <React.Fragment>
-      <AppBar component="nav">
-        <Toolbar>
-          <Typography
-            component="div"
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-              flexGrow: 1,
-              pt: 1
-            }}
-          >
-            <img src={CompanyIcon} alt="Company Logo" />
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <AuthLayout>
 
 
-      <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <ToastContainer />
-
-        <Stack sx={{ width: "80vh", pt: '12vh' }}>
-          <Stepper activeStep={stepCount} sx={{ mb: 2 }} alternativeLabel>
-            {["Sign Up", "Verify", "Personalize"].map((label) => (
-              <Step key={label}>
-                <StepLabel sx={{ fontWeight: "bold" }}>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
 
 
-          <Grid container maxWidth="md" sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            maxWidth: '100%'
-          }}>
+        <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <ToastContainer />
 
-            <Grid item xs={12} sm={7}>
-              <Box component="form" onSubmit={handleSubmit}>
+          <Stack sx={{ width: "80vh", pt: '12vh' }}>
+            <Stepper activeStep={stepCount} sx={{ mb: 2 }} alternativeLabel>
+              {["Sign Up", "Verify", "Personalize"].map((label) => (
+                <Step key={label}>
+                  <StepLabel sx={{ fontWeight: "bold" }}>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
 
-                {getStepContent(stepCount)}
 
-              </Box>
+            <Grid container maxWidth="md" sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              maxWidth: '100%'
+            }}>
+
+              <Grid item xs={12} sm={7}>
+                <Box component="form" onSubmit={handleSubmit}>
+
+                  {getStepContent(stepCount)}
+
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
-        </Stack>
-      </Box>
+          </Stack>
+        </Box>
+      </AuthLayout>
     </React.Fragment>
   );
 };

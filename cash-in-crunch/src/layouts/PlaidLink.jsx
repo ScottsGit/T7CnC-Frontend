@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { usePlaidLink } from "react-plaid-link";
-import Button from '@mui/material/Button';
-
+import { Button, Box } from "@mui/material";
 
 function PlaidLink(props) {
   const [token, setToken] = useState(null);
@@ -85,14 +84,15 @@ function PlaidLink(props) {
       open();
     }
   }, [token, isOauth, ready, open]);
-  
+
   return (
-    <div>
-      <Button onClick={() => open()
-        } disabled={!ready}>
+    <React.Fragment>
+      <Button variant="contained" onClick={() => open()
+      } disabled={!ready}
+        sx={{}}>
         <strong>Link account</strong>
       </Button>
-    </div>
+    </React.Fragment>
   );
 }
 
