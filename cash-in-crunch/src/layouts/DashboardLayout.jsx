@@ -124,7 +124,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Dashboard({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const selectedIndexRef = useRef(0);
 
   // const list1 = [
   //   { id: 1, name: 'Dashboard', icon: HomeOutlinedIcon },
@@ -135,19 +134,19 @@ export default function Dashboard({ children }) {
   //   { id: 6, name: 'Goals', icon: goals },
   //   { id: 7, name: 'Investments', icon: investments },
   //   { id: 8, name: 'Advice', icon: advice }];
-    const list1 = [
-      { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon/> },
-      { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon/> },
-      { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon/> },
-      { id: 4, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon/> },
-      { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon/> },
-      { id: 6, name: 'Goals', icon: <AdsClickOutlinedIcon/> },
-      { id: 7, name: 'Investments', icon: <StackedLineChartOutlinedIcon/> },
-      { id: 8, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon/> }];
-      const list2 = [
-        { id: 1, name: 'Help', icon: <SupportAgentIcon/> },
-        { id: 2, name: 'Setting', icon: <SettingsIcon/> },
-        { id: 3, name: 'Profile', icon: <AccountCircleOutlinedIcon/> }];
+  const list1 = [
+    { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
+    { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
+    { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
+    { id: 4, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon /> },
+    { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
+    { id: 6, name: 'Goals', icon: <AdsClickOutlinedIcon /> },
+    { id: 7, name: 'Investments', icon: <StackedLineChartOutlinedIcon /> },
+    { id: 8, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon /> }];
+  const list2 = [
+    { id: 9, name: 'Help', icon: <SupportAgentIcon /> },
+    { id: 10, name: 'Setting', icon: <SettingsIcon /> },
+    { id: 11, name: 'Profile', icon: <AccountCircleOutlinedIcon /> }];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -157,7 +156,7 @@ export default function Dashboard({ children }) {
     setOpen(false);
   };
 
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   const buttonProps = (index) => ({
     selected: selectedIndex === index,
     onClick: () => setSelectedIndex(index),
@@ -167,7 +166,7 @@ export default function Dashboard({ children }) {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexGrow: 1  }}>
+    <Box sx={{ display: 'flex', flexGrow: 1 }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ backgroundColor: '#ffffff', }}>
         <Toolbar>
@@ -183,7 +182,7 @@ export default function Dashboard({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" color="primary" sx={{ display:'flex', flexGrow: 1, align:'left' }}>
+          <Typography variant="h6" component="div" color="primary" sx={{ display: 'flex', flexGrow: 1, align: 'left' }}>
             Dashboard
           </Typography>
 
@@ -230,8 +229,6 @@ export default function Dashboard({ children }) {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                    width: '34px',
-                    height: '34px'
                   }}
                   style={{ color: '#ffffff' }}
                 >
@@ -243,32 +240,35 @@ export default function Dashboard({ children }) {
             </ListItem>
           ))}
         </List>
-        <Divider sx={{ backgroundColor: '#4E0673' }} />
-        <List>
-          {list2.map((item, index) => (
-            <ListItem key={item} disablePadding sx={{ display: 'block', }} >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                  '&:focus': { backgroundColor: '#7827A3' },
-                }}
 
-              >
-                <ListItemIcon
+        <List sx={{mt: 8}}>
+          {list2.map((item, index) => (
+            <React.Fragment key={item}>
+              <ListItem key={item} disablePadding sx={{ display: 'block', }} >
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
+                    '&:focus': { backgroundColor: '#7827A3' },
                   }}
-                  style={{ color: '#ffffff' }}
+
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                    style={{ color: '#ffffff' }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+              {item.name === "Setting" && <Divider sx={{ backgroundColor: '#4E0673' }} />}
+            </React.Fragment>
           ))}
         </List>
       </Drawer>
