@@ -54,7 +54,7 @@ function App() {
         const data = await response.json();
         setUserData(data.users);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("Error fetching data:", error);
       }
     };
 
@@ -71,7 +71,7 @@ function App() {
             <li key={user.id}>{user.username}</li>
           ))}
         </ul> */}
-        <UserProvider>
+        {/* <UserProvider> */}
           <Routers />
 
           <Routes>
@@ -104,7 +104,7 @@ function App() {
 
 
           {/* <Footer /> */}
-        </UserProvider>
+        {/* </UserProvider> */}
       </div>
     </ThemeProvider>
   );

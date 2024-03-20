@@ -1,4 +1,6 @@
 import React from 'react'
+import { Typography, AppBar, Toolbar, } from "@mui/material";
+import CompanyIcon from '../assets/images/company-icon.svg';
 
 export const AuthLayout = ({children}) => {
   return (

@@ -131,7 +131,7 @@ export default function Dashboard({ children }) {
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', flexGrow: 1  }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ backgroundColor: '#ffffff', }}>
         <Toolbar>
@@ -147,7 +147,7 @@ export default function Dashboard({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" color="primary">
+          <Typography variant="h6" component="div" color="primary" sx={{ display:'flex', flexGrow: 1, align:'left' }}>
             Dashboard
           </Typography>
 
@@ -235,7 +235,7 @@ export default function Dashboard({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100vh', flexGrow: 1, p: 3, }}>
+      <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100%', flexGrow: 1, p: 3, }}>
         <DrawerHeader />
 
         {children}

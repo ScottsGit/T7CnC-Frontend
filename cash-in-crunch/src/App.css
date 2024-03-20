@@ -38,3 +38,11 @@
 }
 
 
+.Overlay__content {
+  height: 50%;
+  left: 0;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
