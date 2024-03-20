@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -25,6 +25,7 @@ import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
 
+import PlaidLink from './PlaidLink';
 
 const drawerWidth = 240;
 
@@ -100,17 +101,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Dashboard({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
   const selectedIndexRef = useRef(0);
 
-  const list1 = [{ id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon/> },
-  { id: 1, name: 'Accounts', icon: <ViewComfyOutlinedIcon/> },
-  { id: 2, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon/> },
-  { id: 3, name: 'Cash Flow', icon: <HomeOutlinedIcon/> },
-  { id: 4, name: 'Plan', icon: <EventAvailableOutlinedIcon/> },
-  { id: 5, name: 'Goals', icon: <HomeOutlinedIcon/> },
-  { id: 6, name: 'Investments', icon: <HomeOutlinedIcon/> },
-  { id: 7, name: 'Advice', icon: <HomeOutlinedIcon/> }];
+  const list1 = [
+    { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
+    { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
+    { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
+    { id: 4, name: 'Cash Flow', icon: <HomeOutlinedIcon /> },
+    { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
+    { id: 6, name: 'Goals', icon: <HomeOutlinedIcon /> },
+    { id: 7, name: 'Investments', icon: <HomeOutlinedIcon /> },
+    { id: 8, name: 'Advice', icon: <HomeOutlinedIcon /> }];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,11 +150,15 @@ export default function Dashboard({ children }) {
           <Typography variant="h6" noWrap component="div" color="primary">
             Dashboard
           </Typography>
+
+          <PlaidLink />
+
         </Toolbar>
       </AppBar>
+
+
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-
           <Typography
             variant='body'
             component="div"
@@ -212,7 +217,7 @@ export default function Dashboard({ children }) {
                   px: 2.5,
                   '&:focus': { backgroundColor: '#7827A3' },
                 }}
-               
+
               >
                 <ListItemIcon
                   sx={{
@@ -230,7 +235,7 @@ export default function Dashboard({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" backgroundColor='#F6F0F9' sx={{ height:'100vh', flexGrow: 1, p: 3, }}>
+      <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100vh', flexGrow: 1, p: 3, }}>
         <DrawerHeader />
 
         {children}

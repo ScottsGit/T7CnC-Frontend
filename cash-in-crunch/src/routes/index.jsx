@@ -9,7 +9,7 @@ import { dashboardRoutes } from "./routes";
 
 import Landing from "../pages/landingPage";
 import MultiForm from "../pages/signup";
-import Login from "../components/Login";
+import Login from "../pages/login";
 
 const Index = () => {
 
