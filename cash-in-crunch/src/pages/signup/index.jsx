@@ -18,7 +18,8 @@ import Step2Form from "./Step2Form";
 import Step3Form from "./Step3Form";
 import CompanyIcon from '../../assets/images/company-icon.svg';
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const MultiForm = ({ classes }) => {
   const [data, setData] = useState({
@@ -36,21 +37,22 @@ const MultiForm = ({ classes }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form submitted", data);
-    const formData = {...data};
+    const formData = { ...data };
+
     await axios
-      .post(`http://localhost:8888/register`, formData)
+      .post(`${process.env.REACT_APP_API_HOST}/auth/register`, formData)
       .then((response) => {
         // move to sign in page
-        navigate("/login");
+        // navigate("/login");
 
         console.log("successful registered")
 
         // add successfully notif
         toast.success(response?.data?.detail);
         // reload page
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
 
         console.log(response);
       })
@@ -138,6 +140,8 @@ const MultiForm = ({ classes }) => {
 
 
       <Box component="main" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <ToastContainer />
+
         <Stack sx={{ width: "80vh", pt: '12vh' }}>
           <Stepper activeStep={stepCount} sx={{ mb: 2 }} alternativeLabel>
             {["Sign Up", "Verify", "Personalize"].map((label) => (
@@ -151,7 +155,7 @@ const MultiForm = ({ classes }) => {
           <Grid container maxWidth="md" sx={{
             justifyContent: "center",
             alignItems: "center",
-            maxWidth:'100%'
+            maxWidth: '100%'
           }}>
 
             <Grid item xs={12} sm={7}>
