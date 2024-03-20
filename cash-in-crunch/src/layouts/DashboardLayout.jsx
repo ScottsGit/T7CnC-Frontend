@@ -17,13 +17,36 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
+import Logo from '../assets/images/logo.svg';
+
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import Logo from '../assets/images/logo.svg';
+
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
+import AdsClickOutlinedIcon from '@mui/icons-material/AdsClickOutlined';
+import StackedLineChartOutlinedIcon from '@mui/icons-material/StackedLineChartOutlined';
+import TipsAndUpdatesOutlinedIcon from '@mui/icons-material/TipsAndUpdatesOutlined';
+
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+
+
+import accounts from '../assets/images/dashboard/accounts.svg'
+import advice from '../assets/images/dashboard/advice.svg'
+import cash from '../assets/images/dashboard/cash.svg'
+import dashboard from '../assets/images/dashboard/dashboard.svg'
+import goals from '../assets/images/dashboard/goals.svg'
+import investments from '../assets/images/dashboard/investments.svg'
+import plan from '../assets/images/dashboard/plan.svg'
+import transactions from '../assets/images/dashboard/transactions.svg'
+
+
 
 import PlaidLink from './PlaidLink';
 
@@ -103,15 +126,28 @@ export default function Dashboard({ children }) {
   const [open, setOpen] = React.useState(false);
   const selectedIndexRef = useRef(0);
 
-  const list1 = [
-    { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
-    { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
-    { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
-    { id: 4, name: 'Cash Flow', icon: <HomeOutlinedIcon /> },
-    { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
-    { id: 6, name: 'Goals', icon: <HomeOutlinedIcon /> },
-    { id: 7, name: 'Investments', icon: <HomeOutlinedIcon /> },
-    { id: 8, name: 'Advice', icon: <HomeOutlinedIcon /> }];
+  // const list1 = [
+  //   { id: 1, name: 'Dashboard', icon: HomeOutlinedIcon },
+  //   { id: 2, name: 'Accounts', icon: accounts },
+  //   { id: 3, name: 'Transactions', icon: transactions },
+  //   { id: 4, name: 'Cash Flow', icon: cash },
+  //   { id: 5, name: 'Plan', icon: plan },
+  //   { id: 6, name: 'Goals', icon: goals },
+  //   { id: 7, name: 'Investments', icon: investments },
+  //   { id: 8, name: 'Advice', icon: advice }];
+    const list1 = [
+      { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon/> },
+      { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon/> },
+      { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon/> },
+      { id: 4, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon/> },
+      { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon/> },
+      { id: 6, name: 'Goals', icon: <AdsClickOutlinedIcon/> },
+      { id: 7, name: 'Investments', icon: <StackedLineChartOutlinedIcon/> },
+      { id: 8, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon/> }];
+      const list2 = [
+        { id: 1, name: 'Help', icon: <SupportAgentIcon/> },
+        { id: 2, name: 'Setting', icon: <SettingsIcon/> },
+        { id: 3, name: 'Profile', icon: <AccountCircleOutlinedIcon/> }];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -194,12 +230,13 @@ export default function Dashboard({ children }) {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
-                    width: '25px',
-                    height: '25px'
+                    width: '34px',
+                    height: '34px'
                   }}
                   style={{ color: '#ffffff' }}
                 >
                   {item.icon}
+                  {/* <img src={item.icon} alt={item.name}/> */}
                 </ListItemIcon>
                 <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -208,8 +245,8 @@ export default function Dashboard({ children }) {
         </List>
         <Divider sx={{ backgroundColor: '#4E0673' }} />
         <List>
-          {['Help Center', 'Setting', 'Profile'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block', }} >
+          {list2.map((item, index) => (
+            <ListItem key={item} disablePadding sx={{ display: 'block', }} >
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -227,9 +264,9 @@ export default function Dashboard({ children }) {
                   }}
                   style={{ color: '#ffffff' }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
