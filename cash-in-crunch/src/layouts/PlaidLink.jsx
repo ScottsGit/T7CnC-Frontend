@@ -3,7 +3,7 @@ import { usePlaidLink } from "react-plaid-link";
 import { Button, Box } from "@mui/material";
 
 function PlaidLink(props) {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('link_token'));
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ function PlaidLink(props) {
     });
     const data = await response.json();
     console.log(data)
-    await getBalance();
+    // await getBalance();
   }, []);
 
   // Creates a Link token
