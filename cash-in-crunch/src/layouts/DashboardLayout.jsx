@@ -135,18 +135,18 @@ export default function Dashboard({ children }) {
   //   { id: 7, name: 'Investments', icon: investments },
   //   { id: 8, name: 'Advice', icon: advice }];
   const list1 = [
-    { id: 1, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
-    { id: 2, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
-    { id: 3, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
-    { id: 4, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon /> },
-    { id: 5, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
-    { id: 6, name: 'Goals', icon: <AdsClickOutlinedIcon /> },
-    { id: 7, name: 'Investments', icon: <StackedLineChartOutlinedIcon /> },
-    { id: 8, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon /> }];
+    { id: 0, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
+    { id: 1, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
+    { id: 2, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
+    { id: 3, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon /> },
+    { id: 4, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
+    { id: 5, name: 'Goals', icon: <AdsClickOutlinedIcon /> },
+    { id: 6, name: 'Investments', icon: <StackedLineChartOutlinedIcon /> },
+    { id: 7, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon /> }];
   const list2 = [
-    { id: 9, name: 'Help', icon: <SupportAgentIcon /> },
-    { id: 10, name: 'Setting', icon: <SettingsIcon /> },
-    { id: 11, name: 'Profile', icon: <AccountCircleOutlinedIcon /> }];
+    { id: 8, name: 'Help', icon: <SupportAgentIcon /> },
+    { id: 9, name: 'Setting', icon: <SettingsIcon /> },
+    { id: 10, name: 'Profile', icon: <AccountCircleOutlinedIcon /> }];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -243,8 +243,8 @@ export default function Dashboard({ children }) {
 
         <List sx={{mt: 8}}>
           {list2.map((item, index) => (
-            <React.Fragment key={item}>
-              <ListItem key={item} disablePadding sx={{ display: 'block', }} >
+            <React.Fragment key={item.id}>
+              <ListItem key={item.id} disablePadding sx={{ display: 'block', }} >
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -272,7 +272,7 @@ export default function Dashboard({ children }) {
           ))}
         </List>
       </Drawer>
-      <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100%', flexGrow: 1, p: 3, }}>
+      <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100%', flexGrow: 1, p: 3, minHeight: '100vh' }}>
         <DrawerHeader />
 
         {children}
