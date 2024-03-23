@@ -3,8 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 
-// import { AuthProtected } from "./AuthProtected";
-
 import { dashboardRoutes } from "./routes";
 
 import Landing from "../pages/landingPage";
@@ -16,8 +14,8 @@ const Index = () => {
     return (
         <Routes>
             <Route exact path="/" element={<Landing />} />
-            <Route path="/signup" element={<MultiForm />} />
-            <Route path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<MultiForm />} />
+            <Route exact path="/login" element={<Login />} />
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
 
             <Route>

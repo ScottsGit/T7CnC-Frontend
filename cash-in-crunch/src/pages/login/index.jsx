@@ -28,12 +28,19 @@ const Login = () => {
 
                 localStorage.setItem("auth_token", response.data['access_token']);
                 localStorage.setItem(
-                    "auth_token_type", 
+                    "auth_token_type",
                     response.data['token_type']
                 );
 
+                if (response.data['item_id']?.length > 0) {
+                    console.log("fking id", response.data['item_id'])
+                    localStorage.setItem("item_id", response.data['item_id']);
+                }
                 
-                navigate('/dashboard')
+                setTimeout(() => {
+                    //   window.location.reload();
+                    navigate('/dashboard')
+                }, 500);
 
                 // add successfully notif
                 toast.success(response?.data?.detail);
@@ -79,8 +86,8 @@ const Login = () => {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: "center",
-                        maxWidth: '100%',
-                        width: "60vh",
+                        maxWidth: '60vh',
+                        width: "100%",
                         pt: '2vh',
                         mb: 5,
                     }}>
@@ -123,7 +130,7 @@ const Login = () => {
                                         sx={{ align: "right" }}
                                     />
                                 </Box>
-                                <Divider sx={{ color: '#757575', mb: 2 }}></Divider>
+                                <Divider sx={{ color: '#757575', mb: 3 }}></Divider>
                                 <Box sx={{ mb: 2, pt: '2vh', }}>
                                     <TextField
                                         label="Email"
@@ -138,6 +145,7 @@ const Login = () => {
                                         onChange={handleOnChange}
                                         required
                                         sx={{ mb: 2 }}
+                                        style={{ marginBottom: '1rem' }}
                                     />
                                     <TextField
                                         label="Password"
@@ -187,7 +195,7 @@ const Login = () => {
                 </Paper>
                 <Box sx={{ mt: 2 }}>
                     <Typography align='center'>
-                        Already have an account? <Link fontWeight="bold">Sign up</Link>
+                        Already have an account? <a href="/signup" >Sign up</a>
                     </Typography>
                 </Box>
             </Box>

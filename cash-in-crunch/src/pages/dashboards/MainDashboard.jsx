@@ -7,94 +7,113 @@ import ApexCharts from 'apexcharts'
 import SpendingLineChart from "../../components/charts/SpendingLineChart";
 import NetworthColumnChart from "../../components/charts/NetworthColumnChart";
 import TransactionsTable from "../../components/charts/TransactionsTable";
+import CategoryPolarChart from "../../components/charts/CategoryPolarChart";
 
 import CircularProgress from '@mui/material/CircularProgress';
-
+import AccountBalanceSharpIcon from '@mui/icons-material/AccountBalanceSharp';
 
 
 const MainDashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authToken, setAuthToken] = useState(localStorage.getItem('auth_token'));
+  const [itemId, setItemId] = useState(localStorage.getItem('item_id'));
   const [spendingLineChartData, setSpendingLineChartData] = useState(null);
   const [networthColumnChartData, setNetworthColumnChartData] = useState(null);
   const [transactionsData, setTransactionsData] = useState(null);
   const [balanceData, setBalanceData] = useState(null);
+  const [categorySpendingData, setCategorySpendingData] = useState(null);
 
 
   const navigate = useNavigate();
 
   const getLineChart = React.useCallback(async () => {
     setLoading(true);
-    const response1 = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/networth-line-chart`, {
+    // console.log(authToken)
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/spending-line-chart`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       }
     });
-    const res = await response1.json();
-    console.log(res['result']['series'])
+    const res = await response.json();
+
     setSpendingLineChartData(res['result'])
-
-
     setLoading(false);
-  }, [setSpendingLineChartData, setLoading]);
+  }, [setSpendingLineChartData, setLoading, authToken]);
 
 
   const getColumnChart = React.useCallback(async () => {
     setLoading(true);
-    const response2 = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/networth-column-chart`, {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/networth-column-chart`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       }
     });
-    const res2 = await response2.json();
-    console.log(res2['result'])
-    setNetworthColumnChartData(res2['result'])
+    const res = await response.json();
+
+    setNetworthColumnChartData(res['result'])
     setLoading(false);
-  }, [setNetworthColumnChartData, setLoading]);
+  }, [setNetworthColumnChartData, setLoading, authToken]);
 
 
   const getTransactions = React.useCallback(async () => {
     setLoading(true);
-    const response2 = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/transactions`, {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/transactions`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       }
     });
-    const res2 = await response2.json();
-    console.log(res2['result'])
-    setTransactionsData(res2['result'])
+    const res = await response.json();
 
+    setTransactionsData(res['result'])
     setLoading(false);
-  }, [setTransactionsData, setLoading]);
+  }, [setTransactionsData, setLoading, authToken]);
 
   const getBalance = React.useCallback(async () => {
     setLoading(true);
-    const response2 = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/balance`, {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/balance`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       }
     });
-    const res2 = await response2.json();
-    console.log(res2['result'])
-    setBalanceData(res2['result']['balance'])
+    const res = await response.json();
 
+    setBalanceData(res['result']['balance'])
     setLoading(false);
-  }, [setBalanceData, setLoading]);
+  }, [setBalanceData, setLoading, authToken]);
+
+  const getCategorySpending = React.useCallback(async () => {
+    setLoading(true);
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/spends-polar-chart`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      }
+    });
+    const res = await response.json();
+
+    setCategorySpendingData(res['result'])
+    setLoading(false);
+  }, [setCategorySpendingData, setLoading, authToken]);
 
   useEffect(() => {
     if (authToken == null) {
       navigate('/login')
+    } else {
+      if (itemId != null) {
+        getBalance();
+        getLineChart();
+        getColumnChart();
+        getTransactions();
+        getCategorySpending();
+      }
     }
-    getBalance();
-    getLineChart();
-    getColumnChart();
-    getTransactions();
-  }, [authToken]);
+
+  }, [authToken, getBalance, getColumnChart, getLineChart, getTransactions, getCategorySpending, navigate, itemId]);
 
   useEffect(() => {
     console.log("updating dashboard ...............")
@@ -102,7 +121,8 @@ const MainDashboard = () => {
     console.log(spendingLineChartData);
     console.log(networthColumnChartData);
     console.log(transactionsData);
-  }, [spendingLineChartData, networthColumnChartData]);
+    console.log(categorySpendingData);
+  }, [spendingLineChartData, networthColumnChartData, transactionsData, balanceData, categorySpendingData]);
 
 
   return (
@@ -124,29 +144,55 @@ const MainDashboard = () => {
             <Grid key={item.name} item>
               <Paper
                 sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems:'center',
                   height: 130,
                   width: 260,
                   backgroundColor: (theme) =>
                     theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                 }}
               >
-                <Typography variant="h6"
-                  align='left'
-                  color="primary"
-                  sx={{
-                    fontWeight: 'bold',
-                    p:2
-                  }}>
-                  {item.name}
-                </Typography>
-                <Typography variant='h5'
-                  align='left'
-                  sx={{
-                    fontWeight: 'bold',
-                    pX:2
-                  }}>
-                  ${item.current}
-                </Typography>
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}>
+                  <Typography variant='subtitle1'
+                    align='left'
+                    color="primary"
+                    sx={{
+                      // fontWeight: 'bold',
+                      paddingX: 2,
+                      paddingY: 1
+                    }}>
+                    {item.name}
+                  </Typography>
+                  <Typography variant='h5'
+                    align='left'
+                    color="primary"
+                    sx={{
+                      fontWeight: '600',
+                      paddingX: 2
+                    }}>
+                    ${item.current}
+                  </Typography>
+                  <Typography variant='body2'
+                    align='left'
+                    sx={{
+                      fontWeight: 'bold',
+                      paddingX: 2,
+                      paddingY: 1
+                    }}>
+                    Available: ${item.available}
+                  </Typography>
+                </Box>
+
+                <Box sx={{mr: 3, pb:5}}>
+                    <AccountBalanceSharpIcon color='primary' sx={{width: '41px', height: '41px'}}/>
+                </Box>
+
               </Paper>
             </Grid>
           ))}
@@ -159,10 +205,13 @@ const MainDashboard = () => {
             {networthColumnChartData && <NetworthColumnChart series={networthColumnChartData.series} />}
           </Grid>
           <Grid item xs={6}>
-            {spendingLineChartData && <SpendingLineChart series={spendingLineChartData.series} categories={spendingLineChartData.xaxis.categories} />}
+            {spendingLineChartData && <SpendingLineChart series={spendingLineChartData.series} />}
           </Grid>
           <Grid item xs={6}>
             {transactionsData && <TransactionsTable rows={transactionsData.latest_transactions} />}
+          </Grid>
+          <Grid item xs={6}>
+            {categorySpendingData && <CategoryPolarChart series={categorySpendingData.series} categories={categorySpendingData.categories} />}
           </Grid>
         </Grid>
       </Stack>

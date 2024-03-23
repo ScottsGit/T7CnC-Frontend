@@ -47,19 +47,19 @@ const theme = createTheme({
 function App() {
   const { loggedIn } = useContext(UserContext);
   const [userData, setUserData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("db.json");
-        const data = await response.json();
-        setUserData(data.users);
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("db.json");
+  //       const data = await response.json();
+  //       setUserData(data.users);
+  //     } catch (error) {
+  //       console.log("Error fetching data:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,7 +74,7 @@ function App() {
         {/* <UserProvider> */}
           <Routers />
 
-          <Routes>
+          {/* <Routes> */}
             {/* <Route exact path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<MultiForm />} />
@@ -100,7 +100,7 @@ function App() {
                 element={loggedIn ? <Goals /> : <Navigate to="/login" />}
               />
             </Route> */}
-          </Routes>
+          {/* </Routes> */}
 
 
           {/* <Footer /> */}
