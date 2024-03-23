@@ -135,7 +135,7 @@ const MainDashboard = () => {
           minHeight: '100vh',
         }}
       >
-        <CircularProgress color="primary" />
+        <CircularProgress color="primary" sx={{}}/>
       </Box>}
 
       <Stack sx={{ display: 'flex', justifyContent: 'center' }}>

@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import Logo from '../assets/images/logo.svg';
 
@@ -127,20 +128,49 @@ export default function Dashboard({ children }) {
 
   const [authToken, setAuthToken] = useState(localStorage.getItem('auth_token'));
   const [plaidItem, setPlaidItem] = useState(localStorage.getItem('item_id'));
-  
-  useEffect(() =>{
+
+
+  const waitPlaidInit = (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center', // Align items center
+        height: '90vh', // Use full viewport height
+      }}
+    >
+      <Typography variant="h6" align="center" color='primary' gutterBottom>
+        Waiting for Plaid to initialize
+      </Typography>
+      <LinearProgress color="secondary" sx={{ width: '80%', mt: 2 }} />
+    </Box>
+
+  )
+  const [progress, setProgress] = useState(null)
+
+
+
+
+  useEffect(() => {
     setAuthToken(localStorage.getItem('auth_token'));
     setPlaidItem(localStorage.getItem('item_id'));
-  },[])
+  }, [])
 
   const handlePlaidItemChange = (token) => {
     console.log("handlePlaidItemChange", token);
     localStorage.setItem('item_id', token);
-    setPlaidItem(token);
+
+
+
+    // setProgress(<LinearProgress color="secondary" sx={{ display: 'flex', mt: '40vh', height: '10px' }} />)
+    setProgress(waitPlaidInit);
 
     setTimeout(() => {
+      setProgress(null)
+      setPlaidItem(token);
       window.location.reload();
-    }, 500);
+    }, 3000);
   }
 
   // const list1 = [
@@ -259,7 +289,7 @@ export default function Dashboard({ children }) {
           ))}
         </List>
 
-        <List sx={{mt: 8}}>
+        <List sx={{ mt: 8 }}>
           {list2.map((item, index) => (
             <React.Fragment key={item.id}>
               <ListItem key={item.id} disablePadding sx={{ display: 'block', }} >
@@ -293,7 +323,9 @@ export default function Dashboard({ children }) {
       <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100%', flexGrow: 1, p: 3, minHeight: '100vh' }}>
         <DrawerHeader />
 
-        {(authToken && plaidItem?.length > 0) && children}
+        {
+          (authToken && plaidItem?.length > 0) ? children : progress
+        }
 
       </Box>
     </Box>
