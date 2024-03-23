@@ -125,6 +125,24 @@ export default function Dashboard({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const [authToken, setAuthToken] = useState(localStorage.getItem('auth_token'));
+  const [plaidItem, setPlaidItem] = useState(localStorage.getItem('item_id'));
+  
+  useEffect(() =>{
+    setAuthToken(localStorage.getItem('auth_token'));
+    setPlaidItem(localStorage.getItem('item_id'));
+  },[])
+
+  const handlePlaidItemChange = (token) => {
+    console.log("handlePlaidItemChange", token);
+    localStorage.setItem('item_id', token);
+    setPlaidItem(token);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  }
+
   // const list1 = [
   //   { id: 1, name: 'Dashboard', icon: HomeOutlinedIcon },
   //   { id: 2, name: 'Accounts', icon: accounts },
@@ -186,7 +204,7 @@ export default function Dashboard({ children }) {
             Dashboard
           </Typography>
 
-          <PlaidLink />
+          {!plaidItem && <PlaidLink handlePlaidItemChange={handlePlaidItemChange} />}
 
         </Toolbar>
       </AppBar>
@@ -275,7 +293,7 @@ export default function Dashboard({ children }) {
       <Box component="main" backgroundColor='#F6F0F9' sx={{ height: '100%', flexGrow: 1, p: 3, minHeight: '100vh' }}>
         <DrawerHeader />
 
-        {children}
+        {(authToken && plaidItem?.length > 0) && children}
 
       </Box>
     </Box>

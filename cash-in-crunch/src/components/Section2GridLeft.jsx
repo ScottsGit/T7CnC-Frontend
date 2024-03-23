@@ -17,7 +17,7 @@ export const Section2GridLeft = ({ imgUrl, title, content, sx={}, ...props }) =>
         />
       </Grid>
 
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} sx={{}}>
         <Stack spacing={2} sx={{ maxWidth: 480 }}>
           <Typography variant="h7" align="center" sx={{
             padding: '20px', // Add some padding

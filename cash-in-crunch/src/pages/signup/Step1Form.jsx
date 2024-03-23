@@ -57,13 +57,11 @@ const Step1Form = ({ inputsObj, handleChange, handleNext }) => {
 
                 <Divider>Or</Divider>
 
-                {/* <GoogleLogin
+                <GoogleLogin
                     clientId="YOUR_GOOGLE_CLIENT_ID"
                     buttonText="Sign in with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={onFailureGoogle}
                     cookiePolicy={"single_host_origin"}
-                /> */}
+                />
 
             </Container>
         </React.Fragment>

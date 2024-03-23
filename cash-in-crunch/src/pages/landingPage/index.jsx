@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from "react";
 import NavBar from './NavBar'
 import Box from '@mui/material/Box';
 import { Section1 } from './Section1';
@@ -6,6 +7,13 @@ import { Section2 } from './Section2';
 import { Section3 } from './Section3';
 
 const Landing = () => {
+
+  useEffect(() => {
+    localStorage.clear();
+  })
+  
+
+
   return (
     <React.Fragment>
       <NavBar />

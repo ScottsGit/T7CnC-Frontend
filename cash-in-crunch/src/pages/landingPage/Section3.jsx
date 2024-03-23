@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Grid, Stack, Paper, Button } from '@mui/material'
 import React from 'react'
-import Section3BG from '../../assets/images/section3-bg.png';
+import Section3BG from '../../assets/images/section3.png';
 
 import { styled } from '@mui/material/styles';
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +29,7 @@ export const Section3 = () => {
                 backgroundPosition: 'center',
                 pt: 10
             }}>
-
+{/* 
             <Typography variant="h5" align="center" sx={{
                 padding: '20px', // Add some padding
                 fontWeight: "bold",
@@ -95,9 +95,10 @@ export const Section3 = () => {
                         <Item>xs=6</Item>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
+
+
+
         </Box>
-
-
     )
 }

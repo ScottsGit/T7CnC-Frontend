@@ -2,12 +2,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import { Button, Box } from "@mui/material";
 
-function PlaidLink(props) {
+function PlaidLink({handlePlaidItemChange}) {
   const [token, setToken] = useState(localStorage.getItem('link_token'));
+  const [plaidItem, setPlaidItem] = useState(localStorage.getItem('item_id'));
+  const [authToken, setAuthToken] = useState(localStorage.getItem('auth_token'));
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  const auth_token = localStorage.getItem('auth_token')
+  
+  // const authToken = localStorage.getItem('auth_token')
 
   const onSuccess = useCallback(async (publicToken) => {
     setLoading(true);
@@ -15,15 +17,24 @@ function PlaidLink(props) {
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/exchange_public_token`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${auth_token}`,
+        Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ public_token: publicToken }),
     });
     const data = await response.json();
-    console.log(data)
+
+    if (data['item_id']?.length > 0) {
+      setPlaidItem(data['item_id'])
+    }
     // await getBalance();
-  }, []);
+  }, [setPlaidItem]);
+
+  useEffect(()=> {
+    if (plaidItem?.length > 0) {
+      handlePlaidItemChange(plaidItem)
+    }
+  }, [plaidItem])
 
   // Creates a Link token
   const createLinkToken = React.useCallback(async () => {
@@ -35,7 +46,7 @@ function PlaidLink(props) {
       console.log(`${process.env.REACT_APP_API_HOST}/plaid/create_link_token`)
       const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/create_link_token`, {
         headers: {
-          Authorization: `Bearer ${auth_token}`,
+          Authorization: `Bearer ${authToken}`,
           "Content-Type": "application/json",
         }
       });
@@ -46,20 +57,6 @@ function PlaidLink(props) {
     }
   }, [setToken]);
 
-  // Fetch balance data
-  const getBalance = React.useCallback(async () => {
-    setLoading(true);
-    const response = await fetch("/plaid/balance", {
-      headers: {
-        Authorization: `Bearer ${auth_token}`,
-        "Content-Type": "application/json",
-      }
-    });
-    const data = await response.json();
-    console.log(data)
-    setData(data);
-    setLoading(false);
-  }, [setData, setLoading]);
 
   let isOauth = false;
 

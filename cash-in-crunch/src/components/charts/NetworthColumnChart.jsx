@@ -84,7 +84,7 @@ const NetworthColumnChart = ({ series = [] }) => {
                             fontWeight: 'bold',
                             mb:5
                         }}>
-                        Net Worth
+                        Net Worth Change
                     </Typography>
                     <Divider sx={{ color: '#757575', mb: 2 }} ></Divider>
                 </Box>
