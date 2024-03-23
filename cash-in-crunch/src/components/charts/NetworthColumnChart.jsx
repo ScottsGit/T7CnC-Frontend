@@ -88,7 +88,7 @@ const NetworthColumnChart = ({ series = [] }) => {
                     </Typography>
                     <Divider sx={{ color: '#757575', mb: 2 }} ></Divider>
                 </Box>
-                <Chart options={chartSetting.options} series={chartSetting.series} type="bar" height={380} />
+                <Chart options={chartSetting.options} series={chartSetting.series} type="bar" height={350} />
             </div>
             <div id="html-dist"></div>
         </Paper>
