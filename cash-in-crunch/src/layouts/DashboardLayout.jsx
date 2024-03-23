@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useRef, useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -181,6 +182,12 @@ export default function Dashboard({ children }) {
       // setTimeout(() => {window.location.reload();},500)
     }, 3000);
   }
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (authToken == null || authToken.length < 1) {
+      navigate('/');
+    }
+  })
 
   // const list1 = [
   //   { id: 1, name: 'Dashboard', icon: HomeOutlinedIcon },
