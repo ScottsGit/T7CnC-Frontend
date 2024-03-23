@@ -150,7 +150,17 @@ export default function Dashboard({ children }) {
   const [progress, setProgress] = useState(null)
 
 
+  const getColumnChart = React.useCallback(async () => {
 
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/plaid/networth-column-chart`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      }
+    });
+    const res = await response.json();
+
+  }, [authToken]);
 
   useEffect(() => {
     setAuthToken(localStorage.getItem('auth_token'));
@@ -161,15 +171,14 @@ export default function Dashboard({ children }) {
     console.log("handlePlaidItemChange", token);
     localStorage.setItem('item_id', token);
 
-
-
+    getColumnChart();
     // setProgress(<LinearProgress color="secondary" sx={{ display: 'flex', mt: '40vh', height: '10px' }} />)
     setProgress(waitPlaidInit);
 
     setTimeout(() => {
       setProgress(null)
       setPlaidItem(token);
-      window.location.reload();
+      // setTimeout(() => {window.location.reload();},500)
     }, 3000);
   }
 
