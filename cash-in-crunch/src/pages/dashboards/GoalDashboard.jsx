@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Stack, Grid, Paper, Typography, } from "@mui/material";
 import MLReadme from './T7CnC-ML-Net-Worth-Prediction.png'
+import DockerPNG from './docker.png';
+
 
 // var htmlDoc = {__html: MLReadMe};
 const GoalDashboard = () => {
@@ -25,7 +27,8 @@ const GoalDashboard = () => {
           <Typography variant='body1' align='left'>
             <Typography sx={{ fontWeight: 'bold' }}>Basic Solutions:</Typography>
             1. Train models for each user account, so that each account has its own trained models.<br />
-            2. Save the trained models in Database for real-time predicting in the future.
+            2. Save the trained models in Database for real-time predicting in the future.<br />
+            3. Docker is used for building the Machine Learning development system.(see picture at the end)
           </Typography>
           <Typography variant='body1' align='left'>
             <Typography sx={{ fontWeight: 'bold' }}>Advanced Solutions:</Typography>
@@ -48,6 +51,18 @@ const GoalDashboard = () => {
           }}
           alt="prediction"
           src={MLReadme}
+        />
+        <Typography variant='body1' align='left'>
+            Used Docker for building development envirnment:
+          </Typography>
+        <Box
+          component="img"
+          sx={{
+            height: '100%',
+            width: '100%',
+          }}
+          alt="prediction"
+          src={DockerPNG}
         />
       </Stack >
     </Box>
