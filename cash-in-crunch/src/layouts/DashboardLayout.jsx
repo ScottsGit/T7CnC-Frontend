@@ -199,18 +199,18 @@ export default function Dashboard({ children }) {
   //   { id: 7, name: 'Investments', icon: investments },
   //   { id: 8, name: 'Advice', icon: advice }];
   const list1 = [
-    { id: 0, name: 'Dashboard', icon: <HomeOutlinedIcon /> },
-    { id: 1, name: 'Accounts', icon: <ViewComfyOutlinedIcon /> },
-    { id: 2, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon /> },
-    { id: 3, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon /> },
-    { id: 4, name: 'Plan', icon: <EventAvailableOutlinedIcon /> },
-    { id: 5, name: 'Goals', icon: <AdsClickOutlinedIcon /> },
-    { id: 6, name: 'Investments', icon: <StackedLineChartOutlinedIcon /> },
-    { id: 7, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon /> }];
+    { id: 0, name: 'Dashboard', icon: <HomeOutlinedIcon />, link:'/dashboard' },
+    { id: 1, name: 'Accounts', icon: <ViewComfyOutlinedIcon />, link: '' },
+    { id: 2, name: 'Transactions', icon: <CurrencyExchangeOutlinedIcon />, link: '' },
+    { id: 3, name: 'Cash Flow', icon: <LocalAtmOutlinedIcon />, link: '' },
+    { id: 4, name: 'Plan', icon: <EventAvailableOutlinedIcon />, link: '' },
+    { id: 5, name: 'Goals', icon: <AdsClickOutlinedIcon />, link: '/goal-dashboard' },
+    { id: 6, name: 'Investments', icon: <StackedLineChartOutlinedIcon />, link: '' },
+    { id: 7, name: 'Advice', icon: <TipsAndUpdatesOutlinedIcon />, link: '' }];
   const list2 = [
-    { id: 8, name: 'Help', icon: <SupportAgentIcon /> },
-    { id: 9, name: 'Setting', icon: <SettingsIcon /> },
-    { id: 10, name: 'Profile', icon: <AccountCircleOutlinedIcon /> }];
+    { id: 8, name: 'Help', icon: <SupportAgentIcon />, link: '' },
+    { id: 9, name: 'Setting', icon: <SettingsIcon />, link: '' },
+    { id: 10, name: 'Profile', icon: <AccountCircleOutlinedIcon />, link: '' }];
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -225,8 +225,9 @@ export default function Dashboard({ children }) {
     selected: selectedIndex === index,
     onClick: () => setSelectedIndex(index),
   });
-  const handleListItemClick = (index) => {
+  const handleListItemClick = (item, index) => {
     setSelectedIndex(index);
+    navigate(item.link);
   }
 
   return (
@@ -286,7 +287,7 @@ export default function Dashboard({ children }) {
                   '&:focus': { backgroundColor: '#7827A3' },
                   backgroundColor: selectedIndex === index ? '#7827A3' : 'transparent'
                 }}
-                onClick={() => handleListItemClick(index)}
+                onClick={() => handleListItemClick(item, index)}
               >
                 <ListItemIcon
                   sx={{
