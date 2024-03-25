@@ -221,14 +221,14 @@ export default function Dashboard({ children }) {
   };
 
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const buttonProps = (index) => ({
-    selected: selectedIndex === index,
-    onClick: () => setSelectedIndex(index),
-  });
+
   const handleListItemClick = (item, index) => {
+    console.log(item.link);
     setSelectedIndex(index);
     navigate(item.link);
   }
+
+
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
@@ -278,7 +278,7 @@ export default function Dashboard({ children }) {
         <Divider sx={{ backgroundColor: '#4E0673' }} />
         <List>
           {list1.map((item, index) => (
-            <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
+            <ListItem key={item.id} disablePadding sx={{ display: 'block' }} onClick={() => handleListItemClick(item, index)}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -287,7 +287,7 @@ export default function Dashboard({ children }) {
                   '&:focus': { backgroundColor: '#7827A3' },
                   backgroundColor: selectedIndex === index ? '#7827A3' : 'transparent'
                 }}
-                onClick={() => handleListItemClick(item, index)}
+                
               >
                 <ListItemIcon
                   sx={{
