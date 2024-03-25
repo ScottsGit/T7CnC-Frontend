@@ -17,5 +17,5 @@ https://education.github.com/git-cheat-sheet-education.pdf
 git clone https://github.com/ScottsGit/T7CnC-Frontend.git  
 
 ### Setup project
-npm install
+npm install  
 npm start
