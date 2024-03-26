@@ -14,20 +14,17 @@ const TokensProvider = ({ children }) => {
 
     // Check token expiry
     const checkAuthTokenExpiry = () => {
-        const token = localStorage.getItem('auth_token'); // Assuming token is stored in localStorage
+        const token = localStorage.getItem('auth_token'); 
         if (token) {
             const decodedToken = jwt_decode(token);
-            const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
+            const currentTime = Date.now() / 1000; 
             if (decodedToken.exp < currentTime) {
-                // Token has expired, remove it from storage
                 localStorage.removeItem('token');
-                // Redirect to login page or display message
                 navigate("/login");
             }
         }
     };
 
-    // Call checkTokenExpiry when the app initializes or when performing authenticated actions
     useEffect(() => {
         checkAuthTokenExpiry();
     }, [authToken]);
