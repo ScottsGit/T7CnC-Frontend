@@ -1,7 +1,7 @@
 # T7CnC-Frontend
 Team 7 - Cash-n-Crunch Frontend  
 
-### Full Project Demo Video
+### Full Project Demo Video (5 mins)  
 https://www.loom.com/share/075a2c4ad7984c8ab295e1107402e207?sid=64ed78f2-3383-4884-88e5-3167ca47008b  
 
 
